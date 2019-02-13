@@ -6,7 +6,7 @@ function getTickets () {
 	global $date, $period, $yesterday;
 
 	echo "$date: Получаем список заявок\n";
-	$tickets = file_get_contents("http://10.22.8.110/forkostin/vk_listticketsfordate.php?datec={$date}&period={$period}");
+	$tickets = file_get_contents("domain/vk_listticketsfordate.php?datec={$date}&period={$period}");
 
 	// сохраняем тикеты в файл
 	file_put_contents("./tickets/tickets_{$period}_{$date}.json", $tickets);
@@ -37,15 +37,15 @@ function getNotConnectedTickets() {
 		group by ticket
 	";
 
-	$result = $dbkpi->query($query);
+    $result = $dbkpi->query($query);
 
-	return $result;
+    return $result;
 }
 
 function getTicketsWithComments() {
-	global $dbh, $date;
+    global $dbh, $date;
 
-	echo date("d.m.Y H:i:s", time()) . ": Получаем список заявок с комментами\n";
+    echo date("d.m.Y H:i:s", time()) . ": Получаем список заявок с комментами\n";
 
     $query = "
     	SELECT
@@ -63,19 +63,16 @@ function getTicketsWithComments() {
 		  AND ticket_comment.tmpl_id IS NOT NULL
     ";
 
-    echo $query . "\n";
-
-	$result = $dbh->query($query);
-
-	$ticketsWithComments = [];
-	while ($row = $result->fetch_assoc()) {
+    $result = $dbh->query($query);
+    $ticketsWithComments = [];
+    while ($row = $result->fetch_assoc()) {
         $ticketsWithComments[$row['ticket']] = array(
             'group' => $row['text'],
             'comment' => $row['comment']
         );
-	}
+    }
 
-	return $ticketsWithComments;
+    return $ticketsWithComments;
 }
 
 /**
@@ -404,7 +401,7 @@ function reportWeek($argv) {
 	createFileXlsx($tickets, "week", $week);
 }
 
-if (isset($_SERVER['PWD']) && strstr($_SERVER['PWD'], 'amur.arbuse.ru')) {
+if (isset($_SERVER['PWD']) && strstr($_SERVER['PWD'], 'domain')) {
 	require_once "../../../services/PHPExcel/PHPExcel.php";
 	require_once "../../db_include.php";
 	require_once "../../../services/Date.php";
