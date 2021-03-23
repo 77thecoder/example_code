@@ -58,7 +58,6 @@
       <q-card>
         <q-card-section class="row items-center bg-red text-white">
           <div class="text-h6">Вы хотите удалить исполнителя {{ executorDelete.executor.FIO }} с заявки {{ executorDelete.OrgTicketCode }}.<br>Вы уверены?</div>
-<!--          <div class="text-h6">Вы хотите удалить исполнителя  с заявки {{ executorDelete.OrgTicketCode }}.<br>Вы уверены?</div>-->
         </q-card-section>
 
         <q-card-actions align="right">
@@ -205,12 +204,8 @@
             </q-item-section>
 
             <q-item-section>
-<!--              <div class="row">-->
-<!--                <div class="col-md-3">-->
               <div>
                   Пакет документов: {{ getCodePacket }} &nbsp;
-<!--                </div>-->
-<!--                <div class="col-md-1">-->
                   <q-icon
                     v-if="collectionTicketsDeleted.length > 0"
                     color="red"
@@ -220,7 +215,6 @@
                     <q-tooltip>В пачке есть удаленные заявки</q-tooltip>
                   </q-icon>
                 </div>
-<!--              </div>-->
             </q-item-section>
 
             <q-badge
@@ -376,16 +370,6 @@
                 >
                   <q-tooltip>Передать статус НЕ ВЫПОЛНЕНО</q-tooltip>
                 </q-btn>
-
-<!--                <q-btn-->
-<!--                  icon="far fa-file"-->
-<!--                  color="grey-7"-->
-<!--                  flat-->
-<!--                  size="sm"-->
-<!--                  @click.stop="addTicket"-->
-<!--                >-->
-<!--                  <q-tooltip>Добавить заявку</q-tooltip>-->
-<!--                </q-btn>-->
 
               </q-item-label>
             </q-item-section>
